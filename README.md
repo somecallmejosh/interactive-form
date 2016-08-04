@@ -5,16 +5,16 @@ Interactive Form
 [Demo for review](https://somecallmejosh.github.io/interactive-form/)
 
 ## Create and link a JavaScript file to index.html
-- [ ] Create a JavaScript file inside the "js" folder and link it to index.html
+- [x] Create a JavaScript file inside the "js" folder and link it to index.html
 - [ ] ~~If you're using jQuery, link index.html to the latest version of jQuery~~
 
 ## Set focus on the first text field
-- [ ] When the page loads, give focus to the first text field
+- [x] When the page loads, give focus to the first text field
 
 ## Job Role section of the form. Reveal a text field when the "Other" option is selected from the "Job Role" drop down menu
-- [ ] *Make sure you add a text input field.*
-- [ ] Use the id of "other-title" for the field
-- [ ] Add placeholder text of "Your Title" for the field
+- [x] *Make sure you add a text input field.*
+- [x] Use the id of "other-title" for the field
+- [x] Add placeholder text of "Your Title" for the field
 
 ## T-Shirt Info section of the form. For the T-Shirt color menu, only display the options that match the design selected in the "Design" menu.
 - [ ] If the user selects "Theme - JS Puns" then the color menu should only display "Cornflower Blue," "Dark Slate Grey," and "Gold."
