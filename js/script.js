@@ -14,14 +14,13 @@
   // ---------------------------------------------------------------------------
   document.querySelectorAll('input')[0].focus();
 
-
 // -----------------------------------------------------------------------------
 // Job Role
 // Get user selection for "Job Role" (probably a funciton that will be reused)
 // -----------------------------------------------------------------------------
   var jobRole = document.getElementById('title');
   function jobRoleToggle() {
-    var selectOption = title.options[title.selectedIndex].value,
+    var selectOption = jobRole.options[jobRole.selectedIndex].value,
         label = document.querySelector('.other-title'),
         input = document.getElementById('other-title');
     if(selectOption === "other") {
@@ -43,8 +42,9 @@
   // Get user selection for "Design" (probably a funciton that will be reused)
   // ---------------------------------------------------------------------------
 
+  var design = document.getElementById('design');
+
   function designSelection() {
-    var design = document.getElementById('design');
     // get the value of the selected <option> in the select component.
     var selectOption = design.options[design.selectedIndex].value;
 
@@ -122,20 +122,35 @@
   // -----------------------------------------------------------------------------
     var eventsSection = document.querySelector('.activities');
     var events = document.querySelectorAll('.activities > label');
-
-    console.log(events[0].textContent);
+    var totalCost = 0;
     function getEventCost() {
-      // Grab event cost text
-      // Find dollar event cost in text indexOf($, 4)
-      // Save value to array
-      // Add all values in the array
+      // all following instances of "this" in this section reference
+      // the clicked label in the event listener at the end of this section
+      var stringContent = this.textContent;
+      var stringStart = stringContent.indexOf("$");
+      var price = stringContent.substring(stringStart + 1) * 1;
+      var checkedInput = this.childNodes[0].checked;
+      if(checkedInput) {
+        totalCost = totalCost + price;
+      } else {
+        totalCost = totalCost - price;
+      }
+      document.querySelector('.current-price').textContent = totalCost;
     }
 
-    function displayCost() {
+    (function displayCost() {
       // print the display cost to the bottom of the activities section
-    }
+      var priceContainer = document.createElement('p');
+      priceContainer.textContent = "Total: $";
+      var currentPrice = document.createElement('span');
+      currentPrice.classList.add("current-price");
+      currentPrice.textContent = "0";
+      priceContainer.appendChild(currentPrice);
+      eventsSection.appendChild(priceContainer);
+    })();
 
-    for (each event) {
-      events.addEventListener("change", filterColorArray);
+    for (var j = 0; j < events.length; j++) {
+      // Context of this in the getEventCost function above.
+      events[j].addEventListener('click', getEventCost);
     }
 })();
