@@ -123,27 +123,63 @@
     var eventsSection = document.querySelector('.activities');
     var events = document.querySelectorAll('input[type="checkbox"]');
     var totalCost = 0;
-
+    var selectedDate;
 
     function getEventCost() {
+      // Aware of jshint 'strict' violations with the use of `this`
       // all following instances of "this" in this section reference
       // the clicked label in the event listener at the end of this section
       var stringContent = this.parentNode.childNodes[1].textContent;
-      var stringStart = stringContent.indexOf("$");
-      var price = stringContent.substring(stringStart + 1) * 1;
+      var priceStart = stringContent.indexOf("$");
+      var price = stringContent.substring(priceStart + 1) * 1;
+      var dateStart = stringContent.indexOf("—");
+      var dateEnd = stringContent.indexOf(",");
       var checkedInput = this.checked;
-      
+
       if(checkedInput) {
         totalCost = totalCost + price;
       } else {
         totalCost = totalCost - price;
       }
+
+      selectedDate = stringContent.substring(dateStart + 2, dateEnd);
       document.querySelector('.current-price').textContent = totalCost;
+
+      if(this.checked) {
+        conflictingDates('disabled');
+      } else {
+        conflictingDates('enabled');
+      }
     }
+
+    function conflictingDates(checkedStatus) {
+      // This function checks to see if there are conflicting dates
+      for(var i = 0; i < events.length; i++) {
+        var dateMatch = events[i].parentNode.childNodes[1].textContent.indexOf(selectedDate);
+        if(dateMatch !== -1 && events[i].checked === false) {
+
+          // When the user selects an item, all other items that match the date
+          // and time are disabled, so conflicting events cannot be scheduled.
+          if(checkedStatus === 'disabled') {
+            events[i].disabled = true;
+            events[i].parentNode.classList.add('disabled');
+          }
+
+          // If the user deselects an event item, all conflicting items are
+          // set to be selectable again.
+          if(checkedStatus == 'enabled') {
+            events[i].disabled = false;
+            events[i].parentNode.classList.remove('disabled');
+          }
+        }
+      }
+    }
+
 
     (function displayCost() {
       // print the display cost to the bottom of the activities section
       var priceContainer = document.createElement('p');
+      priceContainer.classList.add('price');
       priceContainer.textContent = "Total: $";
       var currentPrice = document.createElement('span');
       currentPrice.classList.add("current-price");
@@ -151,6 +187,7 @@
       priceContainer.appendChild(currentPrice);
       eventsSection.appendChild(priceContainer);
     })();
+
 
     for (var j = 0; j < events.length; j++) {
       // Context of this in the getEventCost function above.
