@@ -121,15 +121,18 @@
   // Registration
   // -----------------------------------------------------------------------------
     var eventsSection = document.querySelector('.activities');
-    var events = document.querySelectorAll('.activities > label');
+    var events = document.querySelectorAll('input[type="checkbox"]');
     var totalCost = 0;
+
+
     function getEventCost() {
       // all following instances of "this" in this section reference
       // the clicked label in the event listener at the end of this section
-      var stringContent = this.textContent;
+      var stringContent = this.parentNode.childNodes[1].textContent;
       var stringStart = stringContent.indexOf("$");
       var price = stringContent.substring(stringStart + 1) * 1;
-      var checkedInput = this.childNodes[0].checked;
+      var checkedInput = this.checked;
+      
       if(checkedInput) {
         totalCost = totalCost + price;
       } else {
@@ -151,6 +154,6 @@
 
     for (var j = 0; j < events.length; j++) {
       // Context of this in the getEventCost function above.
-      events[j].addEventListener('click', getEventCost);
+      events[j].addEventListener('change', getEventCost);
     }
 })();
