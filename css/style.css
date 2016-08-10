@@ -180,6 +180,22 @@ button:hover {
 	}
 }
 
+.hidden {
+  display: none;
+}
+
+input:invalid {
+
+}
+
+input:focus:invalid {
+  box-shadow: 0 0 5px 1px red;
+}
+
 .disabled:not(.selected) {
   opacity: .2;
+}
+
+.errors p {
+  color: red;
 }

@@ -26,16 +26,16 @@ Interactive Form
 - [x] As a user selects activities to register for, a running total is listed below the list of checkboxes. For example, if the user selects "Main conference" then Total: $200 should appear. If they add 1 workshop the total should change to Total: $300.
 
 ## Payment Info section of the form. Display payment sections based on chosen payment option
-- [ ] The"Credit Card" payment option should be selected by default and result in the display of the #credit-card div, and hide the "Paypal" and "Bitcoin information.
-- [ ] When a user selects the "PayPal" payment option, display the Paypal information, and hide the credit card information and the "Bitcoin" information.
-- [ ] When a user selects the "Bitcoin" payment option, display the Bitcoin information, and hide the credit card information.
+- [x] The"Credit Card" payment option should be selected by default and result in the display of the #credit-card div, and hide the "Paypal" and "Bitcoin information.
+- [x] When a user selects the "PayPal" payment option, display the Paypal information, and hide the credit card information and the "Bitcoin" information.
+- [x] When a user selects the "Bitcoin" payment option, display the Bitcoin information, and hide the credit card information.
 
 ## Form validation. Display error messages and don't let the user submit the form if any of these validation errors exist:
-- [ ] Name field can't be empty
-- [ ] Email field must be a validly formatted e-mail address (you don't have to check that it's a real e-mail address, just that it's formatted like one: dave@teamtreehouse.com for example. You'll need to use a regular expression to get this requirement. See the list of Resources for links to learn about regular expressions.
-- [ ] At least one activity must be checked from the list under "Register for Activities."
-- [ ] Payment option must be selected.
-- [ ] If "Credit card" is the selected payment option, make sure the user supplied a credit card number, a zip code, and a 3 number CVV value.
+- [x] Name field can't be empty
+- [x] Email field must be a validly formatted e-mail address (you don't have to check that it's a real e-mail address, just that it's formatted like one: dave@teamtreehouse.com for example. You'll need to use a regular expression to get this requirement. See the list of Resources for links to learn about regular expressions.
+- [x] At least one activity must be checked from the list under "Register for Activities."
+- [x] Payment option must be selected.
+- [x] If "Credit card" is the selected payment option, make sure the user supplied a credit card number, a zip code, and a 3 number CVV value.
 
 ## Make sure your program is free of syntax errors.
 - [ ] You can monitor any errors by looking at the Developer Tools console in your browser.

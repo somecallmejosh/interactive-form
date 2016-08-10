@@ -123,6 +123,7 @@
     var eventsSection = document.querySelector('.activities');
     var events = document.querySelectorAll('input[type="checkbox"]');
     var totalCost = 0;
+    var activitiesSelected = 0;
     var selectedDate;
 
     function getEventCost() {
@@ -138,8 +139,12 @@
 
       if(checkedInput) {
         totalCost = totalCost + price;
+        activitiesSelected += 1;
       } else {
         totalCost = totalCost - price;
+        if (activitiesSelected > 0) {
+          activitiesSelected -= 1;
+        }
       }
 
       selectedDate = stringContent.substring(dateStart + 2, dateEnd);
@@ -178,7 +183,7 @@
 
     (function displayCost() {
       // print the display cost to the bottom of the activities section
-      var priceContainer = document.createElement('p');
+      var priceContainer = document.createElement('footer');
       priceContainer.classList.add('price');
       priceContainer.textContent = "Total: $";
       var currentPrice = document.createElement('span');
@@ -193,4 +198,171 @@
       // Context of this in the getEventCost function above.
       events[j].addEventListener('change', getEventCost);
     }
+
+    // -----------------------------------------------------------------------------
+    // Payment
+    // -----------------------------------------------------------------------------
+    var paymentContainer = document.getElementById('payment');
+    var creditCardContainer = document.getElementById('credit-card');
+    var paragraphs = document.querySelectorAll('p');
+    var paymentOptionSelected = 1;
+    var paymentTypeSelected = 'credit card';
+
+    (function setPAymentTextClasses(){
+      for(var k = 0; k < paragraphs.length; k++) {
+        paragraphs[k].parentNode.classList.add('hidden');
+        var bitcoin = paragraphs[k].textContent.indexOf('Bitcoin');
+        var paypal = paragraphs[k].textContent.indexOf('PayPal');
+        if(bitcoin !== -1) {
+          paragraphs[k].parentNode.classList.add('bitcoin');
+        }
+        if(paypal !== -1) {
+          paragraphs[k].parentNode.classList.add('paypal');
+        }
+      }
+      paymentContainer.options[1].setAttribute('selected', 'selected');
+
+    })();
+
+    function updatePayment() {
+      var bcContainer = document.querySelector('.bitcoin');
+      var ppContainer = document.querySelector('.paypal');
+      var ccHidden = creditCardContainer.classList.contains('hidden');
+      var bcHidden = bcContainer.classList.contains('hidden');
+      var ppHidden = ppContainer.classList.contains('hidden');
+
+      // This feels nasty...
+
+      if(paymentContainer.value === 'select_method') {
+        paymentOptionSelected = 0;
+        paymentTypeSelected = '';
+        if(!ccHidden){
+          creditCardContainer.classList.add('hidden');
+        }
+        if(!bcHidden) {
+          bcContainer.classList.add('hidden');
+        }
+        if(!ppHidden) {
+          ppContainer.classList.add('hidden');
+        }
+      }
+
+      if(paymentContainer.value === 'paypal') {
+        paymentOptionSelected = 1;
+        paymentTypeSelected = 'paypal';
+        if(!ccHidden){
+          creditCardContainer.classList.add('hidden');
+        }
+        if(!bcHidden) {
+          bcContainer.classList.add('hidden');
+        }
+        if(ppHidden) {
+          ppContainer.classList.remove('hidden');
+        }
+      }
+
+      if(paymentContainer.value === 'credit card') {
+        paymentOptionSelected = 1;
+        paymentTypeSelected = 'credit card';
+        if(ccHidden){
+          creditCardContainer.classList.remove('hidden');
+        }
+        if(!bcHidden) {
+          bcContainer.classList.add('hidden');
+        }
+        if(!ppHidden) {
+          ppContainer.classList.add('hidden');
+        }
+      }
+
+      if(paymentContainer.value === 'bitcoin') {
+        paymentTypeSelected = 'bitcoin';
+        if(!ccHidden){
+          creditCardContainer.classList.add('hidden');
+        }
+        if(bcHidden) {
+          bcContainer.classList.remove('hidden');
+        }
+        if(!ppHidden) {
+          ppContainer.classList.add('hidden');
+        }
+      }
+    }
+
+    paymentContainer.addEventListener("change", updatePayment);
+
+// -----------------------------------------------------------------------------
+// Validation
+// -----------------------------------------------------------------------------
+
+  var errorContainer = document.createElement('div');
+  errorContainer.classList.add('errors');
+  var submitButton = document.querySelector('button');
+  var formContainer = document.querySelector('form');
+
+  formContainer.insertBefore(errorContainer, submitButton);
+
+  formContainer.addEventListener("submit", function(e){
+    // Name Validation
+    errorContainer.innerHTML = "";
+
+    function isFeatureSelected(featureChecked) {
+      if(featureChecked > 0) {
+        return true;
+      }
+    }
+
+    var nameField = document.getElementById('name');
+    if(nameField.value.length < 1) {
+      e.preventDefault();
+      alert("Name is required!");
+    };
+
+    if(activitiesSelected === 0) {
+      e.preventDefault();
+      var activityContainer = document.createElement('p');
+      activityContainer.classList.add('activity-error');
+      var activityError = 'An event must be selected.';
+      activityContainer.innerHTML = activityError;
+      errorContainer.appendChild(activityContainer);
+    }
+
+    if(!paymentOptionSelected) {
+      e.preventDefault();
+      var paymentContainer = document.createElement('p');
+      paymentContainer.classList.add('payment-error');
+      var paymentError = 'An payment option must be selected.';
+      paymentContainer.innerHTML = paymentError;
+      errorContainer.appendChild(paymentContainer);
+    }
+
+    if(paymentTypeSelected === 'credit card') {
+      if(document.getElementById('cc-num').value.length === 0) {
+        e.preventDefault();
+        var ccContainer = document.createElement('p');
+        ccContainer.classList.add('cc-error');
+        var ccError = 'Credit Card Cannot Be Blank.';
+        ccContainer.innerHTML = ccError;
+        errorContainer.appendChild(ccContainer);
+      }
+
+      if(document.getElementById('zip').value.length === 0) {
+        e.preventDefault();
+        var zipContainer = document.createElement('p');
+        zipContainer.classList.add('zip-error');
+        var zipError = 'Zip Code Cannot Be Blank.';
+        zipContainer.innerHTML = zipError;
+        errorContainer.appendChild(zipContainer);
+      }
+      
+      if(document.getElementById('cvv').value.length === 0) {
+        e.preventDefault();
+        var cvvContainer = document.createElement('p');
+        cvvContainer.classList.add('cvv-error');
+        var cvvError = 'CVV Code Cannot Be Blank.';
+        cvvContainer.innerHTML = cvvError;
+        errorContainer.appendChild(cvvContainer);
+      }
+    }
+  });
 })();
