@@ -306,17 +306,12 @@
     // Name Validation
     errorContainer.innerHTML = "";
 
-    function isFeatureSelected(featureChecked) {
-      if(featureChecked > 0) {
-        return true;
-      }
-    }
 
     var nameField = document.getElementById('name');
     if(nameField.value.length < 1) {
       e.preventDefault();
       alert("Name is required!");
-    };
+    }
 
     if(activitiesSelected === 0) {
       e.preventDefault();
@@ -354,7 +349,7 @@
         zipContainer.innerHTML = zipError;
         errorContainer.appendChild(zipContainer);
       }
-      
+
       if(document.getElementById('cvv').value.length === 0) {
         e.preventDefault();
         var cvvContainer = document.createElement('p');
