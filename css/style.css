@@ -180,12 +180,15 @@ button:hover {
 	}
 }
 
+
+/*
+--------------------------------------------------------------------------------
+  Personal Styles
+--------------------------------------------------------------------------------
+*/
+
 .hidden {
   display: none;
-}
-
-input:invalid {
-
 }
 
 input:focus:invalid {
@@ -198,4 +201,32 @@ input:focus:invalid {
 
 .errors p {
   color: red;
+}
+
+/*
+--------------------------------------------------------------------------------
+  Select Box Styling
+--------------------------------------------------------------------------------
+*/
+
+select {
+  -moz-appearance:none;
+  -webkit-appearance: none;
+  background: #c1deeb url(../images/select.png) top right  no-repeat;
+  border: #c1deeb 2px solid;
+  border-radius: 0;
+  font-size: 1em;
+  height: 49px;
+  min-width: 20px;
+  padding: 0 30px 0 10px;
+  text-overflow: '';
+}
+
+select:hover {
+  background-position: bottom right;
+}
+
+select::-ms-expand {
+  /* hide arrow in MSIE */
+  display: none;
 }

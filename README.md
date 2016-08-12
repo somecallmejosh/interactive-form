@@ -64,5 +64,5 @@ NOTE: A good practice is to check your project for cross browser compatibility. 
 To get an "exceeds" rating, you can expand on the project in the following ways:
 
 - [x] Hide the "Color" label and select menu until a T-Shirt design is selected from the "Design" menu.
-- [ ] Style the "select" menus (drop down menus) on the form, so they match the styling of the text fields (see Resources links for an article on how to improve the look of select menus using CSS and JavaScript).
+- [x] Style the "select" menus (drop down menus) on the form, so they match the styling of the text fields (see Resources links for an article on how to improve the look of select menus using CSS and JavaScript).
 - [ ] Validate the credit card number so that it's a validly formatted credit card number. (see the Resources links for information on how to do this.)
