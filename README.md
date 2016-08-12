@@ -38,7 +38,7 @@ Interactive Form
 - [x] If "Credit card" is the selected payment option, make sure the user supplied a credit card number, a zip code, and a 3 number CVV value.
 
 ## Make sure your program is free of syntax errors.
-- [ ] You can monitor any errors by looking at the Developer Tools console in your browser.
+- [x] You can monitor any errors by looking at the Developer Tools console in your browser.
 - [x] Use jsHint (see Resources links) to check your code for syntax and formatting problems. (Installed as an Atom.io plugin)
 
 ## Commenting
@@ -48,7 +48,7 @@ Interactive Form
 - [x] When JavaScript is switched off or unavailable all information required to be filled out should be visible. For example, the “Your job role” text field should already be available if someone selects “Other”.
 
 ## Peer Review
-- [ ] Before you submit your project for review, make sure you can check off all of the items on the Student Project Submission Checklist. The checklist is designed to help you make sure you’ve met the grading requirements and that your project is complete and ready to be submitted!
+- [x] Before you submit your project for review, make sure you can check off all of the items on the Student Project Submission Checklist. The checklist is designed to help you make sure you’ve met the grading requirements and that your project is complete and ready to be submitted!
 
 ## Browser Compatibility
 NOTE: A good practice is to check your project for cross browser compatibility. Making sure that it looks and functions correctly in multiple (at least three) browsers is an important part of being a top-notch developer. If you want, leave a comment to the project reviewer about which browser(s) the project was checked to ensure they are seeing things as you have designed them.
@@ -67,4 +67,4 @@ To get an "exceeds" rating, you can expand on the project in the following ways:
 
 - [x] Hide the "Color" label and select menu until a T-Shirt design is selected from the "Design" menu.
 - [x] Style the "select" menus (drop down menus) on the form, so they match the styling of the text fields (see Resources links for an article on how to improve the look of select menus using CSS and JavaScript).
-- [ ] Validate the credit card number so that it's a validly formatted credit card number. (see the Resources links for information on how to do this.)
+- [x] Validate the credit card number so that it's a validly formatted credit card number. (see the Resources links for information on how to do this.)

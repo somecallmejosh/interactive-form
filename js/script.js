@@ -48,7 +48,7 @@
     // get the value of the selected <option> in the select component.
     var selectOption = design.options[design.selectedIndex].value;
     var colorContainer = document.getElementById('colors-js-puns');
-  
+
     function showColorContainer() {
       // Use js-hidden from above (to only hide if JS is available);
       var colorContainerHidden = colorContainer.classList.contains('js-hidden');
@@ -369,6 +369,53 @@
         cvvContainer.innerHTML = cvvError;
         errorContainer.appendChild(cvvContainer);
       }
+    }
+
+    function validateCC() {
+      // Only digits, dashes or spaces
+      var ccNumber = document.getElementById('cc-num').value;
+      // Ensure appropriate card number length;
+      if (!ccNumber.length || ccNumber.length < 15 || ccNumber.length > 16) {
+        return false;
+      }
+
+      if (/[^0-9-\s]+/.test(ccNumber)) return false;
+
+      // Will be updated by iterator values below
+      var nCheck = 0,
+          nDigit = 0,
+          bEven = false;
+
+      // Remove anything that isn't a number
+      ccNumber = ccNumber.replace(/\D/g, "");
+
+      // Start in reverse order
+      for(var n = ccNumber.length - 1; n >= 0; n--) {
+        var cDigit = ccNumber.charAt(n);
+        nDigit = parseInt(cDigit, 10);
+
+        if (bEven) {
+          if((nDigit *= 2) > 9) {
+            nDigit -= 9;
+          }
+        }
+
+        // Add nDigit to nCheck
+        nCheck += nDigit;
+        bEven = !bEven;
+      }
+
+      return (nCheck % 10) === 0;
+    }
+
+    var validateCard = validateCC();
+    if(!validateCard) {
+      e.preventDefault();
+      var ccValidationContainer = document.createElement('p');
+      ccValidationContainer.classList.add('cvv-error');
+      var ccValidationError = 'Credit Card Number is Not Valid.';
+      ccValidationContainer.innerHTML = ccValidationError;
+      errorContainer.appendChild(ccValidationContainer);
     }
   });
 })();
