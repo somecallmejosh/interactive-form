@@ -54,10 +54,12 @@ Interactive Form
 NOTE: A good practice is to check your project for cross browser compatibility. Making sure that it looks and functions correctly in multiple (at least three) browsers is an important part of being a top-notch developer. If you want, leave a comment to the project reviewer about which browser(s) the project was checked to ensure they are seeing things as you have designed them.
 
 ### Some browser options:
-- [x] Google Chrome
-- [x] Mozilla Firefox
-- [ ] Internet Explorer/Edge
-- [x] Safari
+- [x] Google Chrome Version 52.0.2743.116 (64-bit)
+- [x] Mozilla Firefox 48.0
+- [x] Internet Explorer/Edge
+  - Tested in IE11 on Windows 7 in Virtual Box (using Modern.ie)
+  - Tested in Edge on Windows 10 in Virtual Box (using Modern.ie)
+- [x] Safari Version 9.1.2 (11601.7.7)
 
 
 # Extra Credit
