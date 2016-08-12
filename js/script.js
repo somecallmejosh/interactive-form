@@ -47,10 +47,21 @@
   function designSelection() {
     // get the value of the selected <option> in the select component.
     var selectOption = design.options[design.selectedIndex].value;
+    var colorContainer = document.getElementById('colors-js-puns');
+
+    function showColorContainer() {
+      // Use js-hidden from above (to only hide if JS is available);
+      var colorContainerHidden = colorContainer.classList.contains('js-hidden');
+      if(colorContainerHidden) {
+        colorContainer.style.display = "";
+      }
+    }
 
     if(selectOption.indexOf('puns') !== -1) {
+      showColorContainer();
       return 'puns';
     } else if(selectOption.indexOf('heart') !== -1) {
+      showColorContainer();
       return 'heart';
     } else {
       return false;

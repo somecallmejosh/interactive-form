@@ -42,10 +42,10 @@ Interactive Form
 - [x] Use jsHint (see Resources links) to check your code for syntax and formatting problems. (Installed as an Atom.io plugin)
 
 ## Commenting
-- [ ] Make sure you add code comments to explain how your programming works.
+- [x] Make sure you add code comments to explain how your programming works.
 
 ## Progressive Enhancement
-- [ ] When JavaScript is switched off or unavailable all information required to be filled out should be visible. For example, the “Your job role” text field should already be available if someone selects “Other”.
+- [x] When JavaScript is switched off or unavailable all information required to be filled out should be visible. For example, the “Your job role” text field should already be available if someone selects “Other”.
 
 ## Peer Review
 - [ ] Before you submit your project for review, make sure you can check off all of the items on the Student Project Submission Checklist. The checklist is designed to help you make sure you’ve met the grading requirements and that your project is complete and ready to be submitted!
@@ -54,15 +54,15 @@ Interactive Form
 NOTE: A good practice is to check your project for cross browser compatibility. Making sure that it looks and functions correctly in multiple (at least three) browsers is an important part of being a top-notch developer. If you want, leave a comment to the project reviewer about which browser(s) the project was checked to ensure they are seeing things as you have designed them.
 
 ### Some browser options:
-- [ ] Google Chrome
-- [ ] Mozilla Firefox
+- [x] Google Chrome
+- [x] Mozilla Firefox
 - [ ] Internet Explorer/Edge
-- [ ] Safari
+- [x] Safari
 
 
 # Extra Credit
 To get an "exceeds" rating, you can expand on the project in the following ways:
 
-- [ ] Hide the "Color" label and select menu until a T-Shirt design is selected from the "Design" menu.
+- [x] Hide the "Color" label and select menu until a T-Shirt design is selected from the "Design" menu.
 - [ ] Style the "select" menus (drop down menus) on the form, so they match the styling of the text fields (see Resources links for an article on how to improve the look of select menus using CSS and JavaScript).
 - [ ] Validate the credit card number so that it's a validly formatted credit card number. (see the Resources links for information on how to do this.)
