@@ -342,14 +342,57 @@
       errorContainer.appendChild(paymentContainer);
     }
 
+    function validateCC() {
+      // https://gist.github.com/DiegoSalazar/4075533
+      // Thank you Diego Salazar for sharing this elegant solution.
+      // Only digits, dashes or spaces
+      var ccNumber = document.getElementById('cc-num').value;
+      // Ensure appropriate card number length;
+      if (!ccNumber.length || ccNumber.length < 15 || ccNumber.length > 16) {
+        return false;
+      }
+      // Should only contain numbers and dashes
+      if (/[^0-9-\s]+/.test(ccNumber)) return false;
+
+      // Will be updated by iterator values below
+      var nCheck = 0,
+          nDigit = 0,
+          bEven = false;
+
+      // Remove anything that isn't a number
+      ccNumber = ccNumber.replace(/\D/g, "");
+
+      // Start in reverse order
+      for(var n = ccNumber.length - 1; n >= 0; n--) {
+        // Update variables above with current numbers in loop
+        var cDigit = ccNumber.charAt(n);
+        nDigit = parseInt(cDigit, 10);
+
+        if (bEven) {
+          if((nDigit *= 2) > 9) {
+            nDigit -= 9;
+          }
+        }
+
+        // Add nDigit to nCheck
+        nCheck += nDigit;
+        bEven = !bEven;
+      }
+
+      // will return true if Modulo 10 is zero;
+      return (nCheck % 10) === 0;
+    }
+
     if(paymentTypeSelected === 'credit card') {
-      if(document.getElementById('cc-num').value.length === 0) {
+
+      var validateCard = validateCC();
+      if(!validateCard) {
         e.preventDefault();
-        var ccContainer = document.createElement('p');
-        ccContainer.classList.add('cc-error');
-        var ccError = 'Credit Card Cannot Be Blank.';
-        ccContainer.innerHTML = ccError;
-        errorContainer.appendChild(ccContainer);
+        var ccValidationContainer = document.createElement('p');
+        ccValidationContainer.classList.add('cvv-error');
+        var ccValidationError = 'Credit Card Number is Not Valid.';
+        ccValidationContainer.innerHTML = ccValidationError;
+        errorContainer.appendChild(ccValidationContainer);
       }
 
       if(document.getElementById('zip').value.length === 0) {
@@ -369,53 +412,6 @@
         cvvContainer.innerHTML = cvvError;
         errorContainer.appendChild(cvvContainer);
       }
-    }
-
-    function validateCC() {
-      // Only digits, dashes or spaces
-      var ccNumber = document.getElementById('cc-num').value;
-      // Ensure appropriate card number length;
-      if (!ccNumber.length || ccNumber.length < 15 || ccNumber.length > 16) {
-        return false;
-      }
-
-      if (/[^0-9-\s]+/.test(ccNumber)) return false;
-
-      // Will be updated by iterator values below
-      var nCheck = 0,
-          nDigit = 0,
-          bEven = false;
-
-      // Remove anything that isn't a number
-      ccNumber = ccNumber.replace(/\D/g, "");
-
-      // Start in reverse order
-      for(var n = ccNumber.length - 1; n >= 0; n--) {
-        var cDigit = ccNumber.charAt(n);
-        nDigit = parseInt(cDigit, 10);
-
-        if (bEven) {
-          if((nDigit *= 2) > 9) {
-            nDigit -= 9;
-          }
-        }
-
-        // Add nDigit to nCheck
-        nCheck += nDigit;
-        bEven = !bEven;
-      }
-
-      return (nCheck % 10) === 0;
-    }
-
-    var validateCard = validateCC();
-    if(!validateCard) {
-      e.preventDefault();
-      var ccValidationContainer = document.createElement('p');
-      ccValidationContainer.classList.add('cvv-error');
-      var ccValidationError = 'Credit Card Number is Not Valid.';
-      ccValidationContainer.innerHTML = ccValidationError;
-      errorContainer.appendChild(ccValidationContainer);
     }
   });
 })();
