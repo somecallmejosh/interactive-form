@@ -68,3 +68,123 @@ To get an "exceeds" rating, you can expand on the project in the following ways:
 - [x] Hide the "Color" label and select menu until a T-Shirt design is selected from the "Design" menu.
 - [x] Style the "select" menus (drop down menus) on the form, so they match the styling of the text fields (see Resources links for an article on how to improve the look of select menus using CSS and JavaScript).
 - [x] Validate the credit card number so that it's a validly formatted credit card number. (see the Resources links for information on how to do this.)
+
+
+# Feedback
+
+##Create and link JavaScript files
+index.html links to a .js file and jQuery (if using jQuery).
+
+###Reviewer Comments:
+
+Yes! Your index.html is linked correctly.
+
+##Focus on the first field
+When the page loads, cursor appears in the "Name" field, ready for a user to type.
+
+###Reviewer Comments:
+
+You've given your user a nice experience by focusing in on the "Name" field with the form loads. Great work! I also like that you made the focus a color other than blue - this project design is blue overload!
+
+##Displaying payment sections
+"Credit Card" is visible by default. Other divs are revealed based on the "payment" selection.
+Payment sections for "PayPal," and "Bitcoin" are hidden until they're needed.
+If user chooses "PayPal" or "Bitcoin", then hide "Credit Card" and reveal the chosen section.
+
+###Reviewer Comments:
+
+Your payment fields don't display until they're needed. That's great!
+
+##Valid code
+Free of syntax errors.
+
+###Reviewer Comments:
+
+It works! Awesome.
+
+##Code comments
+Student writes code comments to document how the code works.
+
+##Reviewer Comments:
+
+Your code comments are thorough and detailed, and it's clear how your code functions. I also like how you separate your comments with ------------------ it's very organized.
+
+##Form Works Without JavaScript
+All information required to fill out the form is visible when JavaScript is disabled.
+
+###Reviewer Comments:
+
+Your form displays all required information, even when JavaScript is turned off.
+
+##Activity Registration
+User cannot select two activities that are at the same time
+Total cost of selected activities is calculate and displayed below the list of activities
+
+###Reviewer Comments:
+
+The features of your activity registration are working great!
+
+##Elements that Exceeded Expectations
+Job Role Section
+Style drop-down menus to match style of text fields.
+
+###Reviewer Comments:
+
+You've put some extra work into styling your form. Excellent work!
+
+###T-Shirt Section
+Style drop-down menus to match style of text fields.
+Hide the "Color:" label and drop down menu until a T-Shirt design is selected.
+
+####Reviewer Comments:
+
+Good work adding some extra touches to the T-Shirt section!
+
+###Form Validation
+Validate credit card number so that it matches the format of a valid credit card.
+
+####Reviewer Comments:
+
+Fantastic job doing some extra leg work and writing code to valid credit card numbers! I saw that you had a hard time getting the validation working, but it's working on my end! I'm very impressed that you were able to find an answer on Stack Overflow and deploy what you've learned. My one piece of advice on this section is that I think it would be valuable for you to have some sort of feedback for the user when their form is properly submitted. I filled out the form properly the first time and there is no message that says "your form as been submitted" so I wasn't sure if the validation was working properly - I had to intentionally mess up some fields to get a correction message. This won't effect your grade of course, I just thought it might be useful before putting this project into your portfolio.
+
+##Overall Comments
+Joshua,
+
+you really hit it out of the park on this project! I've looked at your code closely and I feel that you are really sticking to best practices, have an organized file structure, and I'm very impressed. You mention "this feels nasty" in your comments, and your right, that section could use a little re-factor. I suggest doing something like this :
+
+A section you have:
+
+```
+if(paymentContainer.value === 'credit card') {
+  paymentOptionSelected = 1;
+  paymentTypeSelected = 'credit card';
+  if(ccHidden) {
+    creditCardContainer.classList.remove('hidden');
+  }
+  if(!bcHidden) {
+    bcContainer.classList.add('hidden');
+  }
+  if(!ppHidden) {
+    ppContainer.classList.add('hidden');
+  }
+}
+```
+
+A possible (untested) refactor:
+```
+if(paymentContainer.value === 'credit card') {
+  paymentOptionSelected = 1;
+  paymentTypeSelected = 'credit card';
+  if(!bcHidden && !ppHidden && ccHidden) {
+    creditCardContainer.classList.remove('hidden');
+    bcContainer.classList.add('hidden');
+    ppContainer.classList.add('hidden');
+  }
+}
+```
+
+This too is a little nasty, but cuts back on some repeated code. Ideally, you would have functions for adding/removing class lists, and you could pass the containers as parameters.
+
+Anyway, you did an awesome job and you really deserve this 'Exceeds Expectations'! I'm really glad to hear that you gain some confidence with every project : )
+
+Good luck on the next project and happy coding!
